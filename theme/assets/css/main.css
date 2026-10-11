@@ -410,3 +410,6 @@ img { max-width: 100%; height: auto; display: block; }
 .ewt-learning-resources { margin: 2rem 0; padding: 1.25rem; border: 1px solid var(--ewt-border); border-radius: 12px; background: #f4f7fb; }
 .ewt-learning-resources h3 { margin-top: 0; }
 .ewt-learning-resources a { text-decoration: underline; overflow-wrap: anywhere; }
+
+/* Keep footer credits above the fixed chat control on narrow screens. */
+@media (max-width: 600px) { .ewt-footer-bottom { padding-bottom: 90px; } }

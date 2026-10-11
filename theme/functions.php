@@ -6,7 +6,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EWT_VERSION', '1.15.0' ); // Tıklamayla sohbet ve ortak SEO kuralları.
+define( 'EWT_VERSION', '1.15.1' ); // Tıklamayla sohbet ve ortak SEO kuralları.
 define( 'EWT_DIR', get_template_directory() );
 define( 'EWT_URI', get_template_directory_uri() );
 

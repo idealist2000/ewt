@@ -343,6 +343,7 @@ img { max-width: 100%; height: auto; display: block; }
 .ewt-footer-menu li { margin-bottom: 8px; }
 .ewt-footer-menu a { color: #cbd5e1; }
 .ewt-footer-bottom { text-align: center; padding: 18px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; }
+.ewt-footer-signature { display: block; width: 100%; margin: 16px auto 0; padding: 0 16px; box-sizing: border-box; text-align: center; overflow-wrap: anywhere; }
 
 @media (max-width: 800px) {
 	.ewt-footer-top { grid-template-columns: 1fr 1fr; }

@@ -265,11 +265,3 @@ $cpts = ewt_cpt_config();
 </section>
 
 <?php ewt_campus_nostalgia(); get_footer(); ?>
-```eof
-
-Bu güncellemeyle birlikte:
-1. Geri sayım kutusuna ufak bir başlık ekledim (`English Web TR 21. Yaşına Giriyor! 🎉`).
-2. Kod 24 Ekim 2026 olduğu an bu alanı siteden otomatik olarak gizleyecek şekilde geliştirildi. Böylece bayram bittiğinde alanı kaldırmayı unutursan diye kendi kendini temizleyecek. 
-3. Tasarımı mevcut temanın genişliğine uyum sağlayacak şekilde esnek hale getirdim.
-
-Dosyayı kaydedip FTP üzerinden temanın ana dizinindeki `front-page.php` dosyasının üzerine yazarak hemen aktif edebilirsin! Herhangi bir tasarım kayması olursa hemen düzeltebiliriz.

@@ -1,6 +1,10 @@
 # English Web TR
 
-Güncel geliştirme sürümü: **1.15.0**. WordPress’e yüklenebilir paket: `englishweb-v1.15.0.zip`. Düzenlenebilir tema kaynakları `theme/` klasöründedir; önceki ZIP sürümleri korunmuştur.
+Güncel geliştirme sürümü: **1.15.1**. WordPress’e yüklenebilir paket: `englishweb-v1.15.1.zip`. Düzenlenebilir tema kaynakları `theme/` klasöründedir; önceki ZIP sürümleri korunmuştur.
+
+## 1.15.1 — Footer düzeltmesi
+
+Ana sayfa şablonunda footer çağrısından sonra kalan Markdown işareti ve güncelleme açıklaması kaldırıldı. “Mimoza Bilişim AI Otomasyon Ajansı Ürünü” imzası footer’ın alt bölümüne yerleştirildi ve masaüstü/mobilde ortalandı. Önceki chatbot, SEO, öğrenme yolu ve e-kitap özellikleri korunur.
 
 ## 1.15.0 — Tıklamayla sohbet ve ortak SEO kuralları
 
@@ -46,7 +50,7 @@ Başlangıç önerisi, A1’den kesintisiz biçimde her blokta en az 4/5 doğru 
 
 ## Kurulum
 
-Önce mevcut WordPress dosya ve veritabanı yedeğinizi alın. Görünüm → Temalar → Yeni Ekle → Tema Yükle üzerinden `englishweb-v1.15.0.zip` paketini yükleyin ve English Web TR temasını etkinleştirin. Bu paket `englishweb/` tema dizini içerir. Mevcut kurulumunuz farklı bir tema klasör adı kullanıyorsa canlı siteye uygulamadan önce bir test sitesinde doğrulayın. Menü konumları ve tema ayarlarını kontrol edin, önbellekleri temizleyin. Yeni öneri sayfası `?ewt_path=1` ile çalışır; ek sayfa oluşturma veya yeni rewrite kuralı gerektirmez.
+Önce mevcut WordPress dosya ve veritabanı yedeğinizi alın. Görünüm → Temalar → Yeni Ekle → Tema Yükle üzerinden `englishweb-v1.15.1.zip` paketini yükleyin ve English Web TR temasını etkinleştirin. Bu paket `englishweb/` tema dizini içerir. Mevcut kurulumunuz farklı bir tema klasör adı kullanıyorsa canlı siteye uygulamadan önce bir test sitesinde doğrulayın. Menü konumları ve tema ayarlarını kontrol edin, önbellekleri temizleyin. Yeni öneri sayfası `?ewt_path=1` ile çalışır; ek sayfa oluşturma veya yeni rewrite kuralı gerektirmez.
 
 ## Geliştirme ve doğrulama
 

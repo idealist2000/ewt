@@ -1,5 +1,9 @@
 # English Web TR — Özel WordPress Teması
 
+## Footer düzeltmesi (v1.15.1)
+
+Ana sayfa sonunda yanlışlıkla görünen güncelleme açıklaması kaldırıldı. Mimoza Bilişim imzası footer’ın alt bölümünde ortalandı.
+
 ## Tıklamayla chatbot ve SEO kuralları (v1.15.0)
 
 Yatay “Sorunuz var mı?” düğmesi chatbotu yalnızca tıklanınca açar. Soru/örnek, sesle yazma ve mevcut iletişim seçenekleri korunur. SEO başlıkları tam focus keyword ile başlar, kelimeler büyük harfle başlar ve 55 karakteri aşmaz; gerçek bölüm sayısı, uygun duygu ifadesi veya “Rehber” kullanılır. Çok uzun FK uyarıyla atlanır.

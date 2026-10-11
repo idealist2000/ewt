@@ -1,0 +1,163 @@
+/* =========================================================
+   English Web TR - Ön Yüz Materyal Üretici [ewt_generator]
+   Sadece bu kısa kodun kullanıldığı sayfalarda yüklenir (wp_footer, koşullu).
+   Renk/radius/shadow değerleri assets/css/main.css'teki :root değişkenlerini kullanır.
+   ========================================================= */
+
+.ewt-generator {
+	max-width: 720px;
+	margin: 0 auto;
+	background: var(--ewt-surface);
+	border: 1px solid var(--ewt-border);
+	border-radius: var(--ewt-radius);
+	box-shadow: var(--ewt-shadow);
+	padding: 28px 30px;
+}
+
+.ewt-generator-title {
+	margin: 0 0 6px;
+	font-size: 22px;
+	font-weight: 800;
+	color: var(--ewt-text);
+}
+.ewt-generator-sub {
+	margin: 0 0 20px;
+	color: var(--ewt-text-muted);
+	font-size: 15px;
+}
+
+.ewt-generator-form { display: flex; flex-direction: column; gap: 16px; }
+.ewt-generator-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.ewt-generator-row label,
+.ewt-generator-topic-label { flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 14px; color: var(--ewt-text); }
+
+.ewt-generator select,
+.ewt-generator input[type="text"] {
+	padding: 11px 14px;
+	border: 1px solid var(--ewt-border);
+	border-radius: 10px;
+	font-size: 15px;
+	font-family: inherit;
+	color: var(--ewt-text);
+	background: #fff;
+}
+.ewt-generator select:focus,
+.ewt-generator input[type="text"]:focus {
+	outline: 2px solid var(--ewt-primary);
+	outline-offset: 1px;
+	border-color: var(--ewt-primary);
+}
+
+/* Honeypot: gerçek kullanıcıdan tamamen gizli, botlar için hâlâ DOM'da mevcut */
+.ewt-gen-hp {
+	position: absolute !important;
+	left: -9999px !important;
+	width: 1px; height: 1px; opacity: 0;
+}
+
+.ewt-generator-submit {
+	align-self: flex-start;
+	background: var(--ewt-accent);
+	color: #fff;
+	border: none;
+	border-radius: 999px;
+	padding: 13px 28px;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: transform .15s ease, opacity .15s ease;
+}
+.ewt-generator-submit:hover { opacity: .92; transform: translateY(-1px); }
+.ewt-generator-submit:disabled { opacity: .6; cursor: default; transform: none; }
+
+/* ---------------- Sonuç paneli: "kağıt" görünümü ---------------- */
+.ewt-generator-result {
+	margin-top: 26px;
+	background: #fffdf9;
+	border: 1px solid var(--ewt-border);
+	border-top: 4px solid var(--ewt-primary);
+	border-radius: var(--ewt-radius);
+	box-shadow: var(--ewt-shadow);
+	padding: 26px 28px;
+}
+
+.ewt-generator-result-head {
+	display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+	margin-bottom: 6px;
+}
+.ewt-generator-result-badge {
+	background: #eef4ff; color: var(--ewt-primary-dark);
+	border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 700;
+}
+.ewt-generator-result-topic { color: var(--ewt-text-muted); font-size: 14px; }
+
+.ewt-generator-result-actions { margin-bottom: 18px; }
+.ewt-gen-print-btn {
+	background: none; border: 1px solid var(--ewt-border); border-radius: 8px;
+	padding: 7px 14px; font-size: 13px; cursor: pointer; color: var(--ewt-text);
+}
+.ewt-gen-print-btn:hover { background: #f1f5f9; }
+
+.ewt-generator-body h2 { margin-top: 26px; color: var(--ewt-primary-dark); }
+.ewt-generator-body h3 { margin-top: 20px; }
+.ewt-generator-body ul, .ewt-generator-body ol { padding-left: 22px; }
+.ewt-generator-body table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+.ewt-generator-body table td, .ewt-generator-body table th { border: 1px solid var(--ewt-border); padding: 8px 10px; text-align: left; }
+
+.ewt-answer-key { margin-top: 20px; background: #f8fafc; border: 1px solid var(--ewt-border); border-radius: 10px; padding: 4px 18px; }
+.ewt-answer-key summary { cursor: pointer; font-weight: 700; padding: 12px 0; }
+
+.ewt-generator-error {
+	background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca;
+	border-radius: 10px; padding: 14px 16px; font-weight: 600;
+}
+
+/* ---------------- Quiz ---------------- */
+.ewt-quiz-title { margin: 0 0 14px; }
+.ewt-quiz-question { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--ewt-border); }
+.ewt-quiz-q-text { font-weight: 700; margin: 0 0 10px; }
+.ewt-quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.ewt-quiz-option {
+	display: flex; align-items: center; gap: 10px; padding: 9px 12px;
+	border: 1px solid var(--ewt-border); border-radius: 8px; cursor: pointer; font-size: 14px;
+}
+.ewt-quiz-option:hover { background: #f8fafc; }
+.ewt-quiz-option.ewt-correct { border-color: #16a34a; background: #f0fdf4; }
+.ewt-quiz-option.ewt-incorrect { border-color: #dc2626; background: #fef2f2; }
+.ewt-quiz-explanation { font-size: 13px; color: var(--ewt-text-muted); margin: 8px 0 0; }
+.ewt-quiz-score-btn {
+	background: var(--ewt-primary); color: #fff; border: none; border-radius: 999px;
+	padding: 11px 24px; font-weight: 700; cursor: pointer;
+}
+.ewt-quiz-score-btn:disabled { opacity: .6; cursor: default; }
+.ewt-quiz-score-result { margin-top: 10px; font-weight: 700; font-size: 15px; }
+
+/* ---------------- WhatsApp CTA ---------------- */
+.ewt-generator-cta {
+	margin-top: 26px; padding: 18px; text-align: center;
+	background: linear-gradient(135deg,#eef4ff,#f8fafc);
+	border: 1px solid var(--ewt-border); border-radius: var(--ewt-radius);
+}
+.ewt-generator-cta p { margin: 0 0 10px; font-weight: 600; color: var(--ewt-text); }
+.ewt-generator-cta-btn {
+	display: inline-flex; align-items: center; gap: 6px;
+	background: #25d366; color: #fff; border-radius: 999px; padding: 10px 22px;
+	font-weight: 700; text-decoration: none;
+}
+.ewt-generator-cta-btn:hover { opacity: .9; color: #fff; text-decoration: none; }
+
+.ewt-generator-disabled { text-align: center; color: var(--ewt-text-muted); padding: 20px; }
+
+/* ---------------- Yazdır / PDF Kaydet ---------------- */
+@media print {
+	body * { visibility: hidden; }
+	.ewt-generator-result, .ewt-generator-result * { visibility: visible; }
+	.ewt-generator-result { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; border: none; }
+	.ewt-generator-result-actions, .ewt-generator-cta { display: none !important; }
+}
+
+/* ---------------- Mobil ---------------- */
+@media (max-width: 600px) {
+	.ewt-generator { padding: 20px 18px; }
+	.ewt-generator-row { flex-direction: column; }
+}

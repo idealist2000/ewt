@@ -1,0 +1,15 @@
+#ewt-topic-speaking { margin: 32px 0; padding: clamp(16px, 3vw, 30px); border: 1px solid #c7d2fe; border-radius: 18px; background: #f8faff; color: #172554; }
+#ewt-topic-speaking [hidden] { display: none !important; }
+#ewt-topic-speaking h2 { margin-top: 0; }
+#ewt-topic-speaking button { background: #243b80; color: white; border: 0; border-radius: 8px; padding: 10px 15px; cursor: pointer; font: inherit; }
+#ewt-topic-speaking button:disabled { opacity: .55; cursor: not-allowed; }
+#ewt-topic-speaking button:focus-visible, #ewt-topic-speaking textarea:focus-visible { outline: 3px solid #ca8a04; outline-offset: 3px; }
+#ewt-topic-speaking button[aria-pressed="true"] { background: #9f1239; }
+#ewt-topic-speaking label { display: block; margin-top: 18px; font-weight: 600; }
+#ewt-topic-speaking textarea { box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #64748b; border-radius: 8px; resize: vertical; font: inherit; background: white; color: #172554; }
+#ewt-topic-speaking .ewt-speaking-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+#ewt-topic-speaking .ewt-speaking-note { font-size: .85rem; color: #475569; }
+#ewt-topic-speaking .ewt-speaking-question { font-size: 1.25rem; font-weight: 700; }
+#ewt-topic-speaking [data-sp="status"] { min-height: 1.5em; }
+#ewt-topic-speaking [data-sp="feedback"] { border-top: 1px solid #c7d2fe; padding-top: 12px; }
+#ewt-topic-speaking [data-sp="review"], #ewt-topic-speaking [data-sp="correction"], #ewt-topic-speaking [data-sp="example"] { white-space: pre-wrap; overflow-wrap: anywhere; }

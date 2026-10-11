@@ -1,0 +1,15 @@
+/*
+Theme Name: English Web TR
+Theme URI: https://english.web.tr
+Author: Onur
+Author URI: https://english.web.tr
+Description: english.web.tr için özel olarak geliştirilmiş, İngilizce öğrenme seviyelerine (İlkokul Öncesi, İlkokul, Ortaokul, Lise, TOEFL, GRE, YDS, GMAT) ve dört dil becerisine (Listening, Speaking, Reading, Vocabulary, Grammar) göre içerik türleri barındıran, mega menülü, AI destekli içerik ve SEO araçlarına sahip modern ve açık renkli bir tema.
+Version: 1.14.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: englishweb
+Tags: education, custom-logo, custom-menu, responsive-layout
+*/
+
+/* Bu dosya sadece WordPress'in zorunlu tema header'ı içindir.
+   Gerçek stiller /assets/css/main.css içindedir ve functions.php üzerinden yüklenir. */

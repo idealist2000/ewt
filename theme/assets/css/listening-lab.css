@@ -1,0 +1,310 @@
+/* ==========================================================
+   DİNLEME & KONUŞMA LABORATUVARI (v1.6.0)
+   Açık renkli tema paletiyle uyumlu, kendi kendine yeten stiller.
+   ========================================================== */
+.ewt-lab {
+	--lab-primary: #2563eb;
+	--lab-primary-dark: #1d4ed8;
+	--lab-green: #16a34a;
+	--lab-red: #dc2626;
+	--lab-bg: #f8fafc;
+	--lab-border: #e2e8f0;
+	background: var(--lab-bg);
+	border: 1px solid var(--lab-border);
+	border-radius: 16px;
+	padding: 24px;
+	margin: 32px 0;
+	font-size: 16px;
+	line-height: 1.6;
+	box-shadow: 0 4px 18px rgba(15, 23, 42, .06);
+}
+
+.ewt-lab-title { margin: 0 0 6px; font-size: 1.35em; font-weight: 700; color: #1e293b; }
+.ewt-lab-sub   { margin: 0 0 18px; color: #475569; font-size: .95em; }
+
+/* ---------- adım sekmeleri ---------- */
+.ewt-lab-steps {
+	display: flex;
+	gap: 8px;
+	list-style: none;
+	margin: 0 0 20px;
+	padding: 0;
+	flex-wrap: wrap;
+}
+.ewt-lab-step-tab {
+	flex: 1 1 120px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 14px;
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-radius: 10px;
+	font-weight: 600;
+	color: #64748b;
+	cursor: pointer;
+	transition: all .15s ease;
+	user-select: none;
+}
+.ewt-lab-step-tab span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px; height: 24px;
+	border-radius: 50%;
+	background: #e2e8f0;
+	font-size: .85em;
+}
+.ewt-lab-step-tab.is-active {
+	border-color: var(--lab-primary);
+	color: var(--lab-primary);
+	background: #eff6ff;
+}
+.ewt-lab-step-tab.is-active span { background: var(--lab-primary); color: #fff; }
+.ewt-lab-step-tab.is-done { color: var(--lab-green); }
+.ewt-lab-step-tab.is-done span { background: var(--lab-green); color: #fff; }
+
+/* ---------- paneller ---------- */
+.ewt-lab-panel { display: none; }
+.ewt-lab-panel.is-active { display: block; animation: ewtLabFade .25s ease; }
+@keyframes ewtLabFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ---------- form ---------- */
+.ewt-lab-hp { position: absolute !important; left: -9999px !important; height: 1px; width: 1px; opacity: 0; }
+.ewt-lab-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.ewt-lab-row label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .92em; }
+.ewt-lab-row select,
+.ewt-lab-topic {
+	padding: 10px 12px;
+	border: 1px solid var(--lab-border);
+	border-radius: 8px;
+	font-size: 1em;
+	background: #fff;
+}
+.ewt-lab-topic-label { flex: 1 1 260px; }
+.ewt-lab-topic { width: 100%; box-sizing: border-box; }
+
+.ewt-lab-submit {
+	background: linear-gradient(135deg, var(--lab-primary), var(--lab-primary-dark));
+	color: #fff;
+	border: 0;
+	border-radius: 10px;
+	padding: 12px 22px;
+	font-size: 1.02em;
+	font-weight: 700;
+	cursor: pointer;
+	transition: transform .12s ease, box-shadow .12s ease;
+}
+.ewt-lab-submit:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37, 99, 235, .3); }
+.ewt-lab-submit:disabled { opacity: .65; cursor: wait; }
+
+.ewt-lab-error {
+	margin-top: 12px;
+	padding: 10px 14px;
+	background: #fef2f2;
+	border: 1px solid #fecaca;
+	border-radius: 8px;
+	color: #991b1b;
+}
+
+/* ---------- dinleme ---------- */
+.ewt-lab-passage-title { margin: 0 0 12px; font-size: 1.1em; color: #1e293b; }
+.ewt-lab-player {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-radius: 12px;
+	padding: 12px 14px;
+	margin-bottom: 14px;
+}
+.ewt-lab-player button {
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-radius: 8px;
+	padding: 8px 14px;
+	font-size: .95em;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background .12s ease;
+}
+.ewt-lab-player button:hover:not(:disabled) { background: #eff6ff; border-color: var(--lab-primary); }
+.ewt-lab-play { border-color: var(--lab-primary) !important; color: var(--lab-primary); }
+.ewt-lab-rate-label { display: flex; align-items: center; gap: 6px; font-size: .9em; font-weight: 600; }
+.ewt-lab-rate { padding: 6px 8px; border: 1px solid var(--lab-border); border-radius: 8px; }
+.ewt-lab-listen-count { font-size: .88em; color: #64748b; margin-left: auto; }
+
+.ewt-lab-passage-wrap { position: relative; }
+.ewt-lab-toggle-text {
+	background: none;
+	border: 1px dashed #94a3b8;
+	border-radius: 8px;
+	padding: 6px 12px;
+	font-size: .88em;
+	cursor: pointer;
+	color: #475569;
+	margin-bottom: 10px;
+}
+.ewt-lab-passage {
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-radius: 12px;
+	padding: 18px 20px;
+	white-space: pre-line;
+	transition: filter .2s ease;
+}
+.ewt-lab-passage.is-hidden {
+	filter: blur(7px);
+	user-select: none;
+	pointer-events: none;
+}
+
+/* ---------- gezinme ---------- */
+.ewt-lab-nav { display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; margin-top: 18px; }
+.ewt-lab-nav button {
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-radius: 10px;
+	padding: 10px 18px;
+	font-weight: 700;
+	cursor: pointer;
+	font-size: .98em;
+}
+.ewt-lab-next { border-color: var(--lab-primary) !important; color: var(--lab-primary); margin-left: auto; }
+.ewt-lab-next:hover, .ewt-lab-again:hover { background: #eff6ff; }
+
+/* ---------- quiz ---------- */
+.ewt-lab-quiz-title { margin: 0 0 4px; }
+.ewt-lab-quiz-hint { color: #64748b; font-size: .9em; margin: 0 0 16px; }
+.ewt-lab-quiz-question {
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-left: 4px solid var(--lab-border);
+	border-radius: 10px;
+	padding: 14px 16px;
+	margin-bottom: 14px;
+}
+.ewt-lab-quiz-question.is-correct { border-left-color: var(--lab-green); }
+.ewt-lab-quiz-question.is-wrong   { border-left-color: var(--lab-red); }
+.ewt-lab-quiz-q-text { font-weight: 600; margin: 0 0 10px; }
+.ewt-lab-quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.ewt-lab-quiz-option {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	border: 1px solid var(--lab-border);
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background .12s ease;
+}
+.ewt-lab-quiz-option:hover { background: #f1f5f9; }
+.ewt-lab-quiz-option.opt-correct { border-color: var(--lab-green); background: #f0fdf4; }
+.ewt-lab-quiz-option.opt-wrong   { border-color: var(--lab-red); background: #fef2f2; }
+.ewt-lab-quiz-explanation {
+	margin: 10px 0 0;
+	padding: 8px 12px;
+	background: #fffbeb;
+	border: 1px solid #fde68a;
+	border-radius: 8px;
+	font-size: .9em;
+}
+.ewt-lab-quiz-score-btn {
+	background: var(--lab-green);
+	color: #fff;
+	border: 0;
+	border-radius: 10px;
+	padding: 12px 22px;
+	font-weight: 700;
+	font-size: 1em;
+	cursor: pointer;
+}
+.ewt-lab-quiz-score {
+	display: none;
+	margin-top: 12px;
+	padding: 12px 16px;
+	background: #eff6ff;
+	border: 1px solid #bfdbfe;
+	border-radius: 10px;
+	font-weight: 700;
+}
+.ewt-lab-quiz-score.is-visible { display: block; }
+
+/* ---------- konuşma ---------- */
+.ewt-lab-speak-h { margin: 22px 0 6px; font-size: 1.05em; }
+.ewt-lab-speak-h:first-child { margin-top: 0; }
+.ewt-lab-speak-hint { color: #64748b; font-size: .88em; margin: 0 0 8px; }
+.ewt-lab-speak-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ewt-lab-speak-list li {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-radius: 10px;
+	padding: 10px 14px;
+}
+.ewt-lab-speak-text { flex: 1; }
+.ewt-lab-say-btn {
+	background: #eff6ff;
+	border: 1px solid #bfdbfe;
+	border-radius: 8px;
+	padding: 4px 10px;
+	cursor: pointer;
+	font-size: 1em;
+	flex-shrink: 0;
+}
+.ewt-lab-say-btn:hover { background: #dbeafe; }
+.ewt-lab-roleplay {
+	background: #fff;
+	border: 1px solid var(--lab-border);
+	border-radius: 10px;
+	padding: 14px 16px;
+	white-space: pre-line;
+}
+
+/* ---------- kayıt ---------- */
+.ewt-lab-recorder {
+	margin-top: 24px;
+	background: #fff;
+	border: 1px dashed #94a3b8;
+	border-radius: 12px;
+	padding: 16px 18px;
+}
+.ewt-lab-recorder h5 { margin: 0 0 6px; font-size: 1em; }
+.ewt-lab-recorder-hint { color: #64748b; font-size: .88em; margin: 0 0 10px; }
+.ewt-lab-recorder-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ewt-lab-rec-start, .ewt-lab-rec-stop {
+	border: 1px solid var(--lab-border);
+	border-radius: 10px;
+	padding: 10px 18px;
+	font-weight: 700;
+	cursor: pointer;
+	background: #fff;
+}
+.ewt-lab-rec-start { color: var(--lab-red); border-color: #fecaca; }
+.ewt-lab-rec-stop  { background: var(--lab-red); color: #fff; border-color: var(--lab-red); }
+.ewt-lab-rec-timer { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--lab-red); }
+.ewt-lab-rec-audio { margin-top: 12px; width: 100%; }
+
+/* ---------- ana sayfa (front-page) yerleşimi ---------- */
+.ewt-home-lab-wrap {
+	padding: 48px 0 8px;
+	scroll-margin-top: 90px; /* hero'daki #ewt-lab-home bağlantısı sticky menünün altında kalmasın */
+	background: linear-gradient(180deg, #eff6ff 0%, transparent 60%);
+}
+.ewt-home-lab-wrap .ewt-lab { margin-top: 8px; }
+
+/* ---------- yazdırma: laboratuvar gizlenir ---------- */
+@media print {
+	.ewt-lab { display: none !important; }
+}
+
+/* ---------- mobil ---------- */
+@media (max-width: 640px) {
+	.ewt-lab { padding: 16px; }
+	.ewt-lab-step-tab { flex: 1 1 40%; font-size: .85em; padding: 8px 10px; }
+	.ewt-lab-listen-count { margin-left: 0; width: 100%; }
+}

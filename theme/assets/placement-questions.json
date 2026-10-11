@@ -1,0 +1,392 @@
+[
+  {
+    "id": "q1",
+    "level": "a1",
+    "question": "My sister ___ a student.",
+    "options": [
+      "am",
+      "is",
+      "are",
+      "be"
+    ],
+    "answer": 1,
+    "explanation": "Tekil özneyle “is” kullanılır."
+  },
+  {
+    "id": "q2",
+    "level": "a1",
+    "question": "We have lunch ___ twelve o’clock.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "to"
+    ],
+    "answer": 2,
+    "explanation": "Belirli saatler için “at” kullanılır."
+  },
+  {
+    "id": "q3",
+    "level": "a1",
+    "question": "Choose the opposite of “hot”.",
+    "options": [
+      "big",
+      "fast",
+      "young",
+      "cold"
+    ],
+    "answer": 3,
+    "explanation": "“Hot” sıcak, “cold” soğuk demektir."
+  },
+  {
+    "id": "q4",
+    "level": "a1",
+    "question": "I ___ coffee every morning.",
+    "options": [
+      "drink",
+      "drinks",
+      "drinking",
+      "drank"
+    ],
+    "answer": 0,
+    "explanation": "“I” ile geniş zamanda fiilin yalın hâli kullanılır."
+  },
+  {
+    "id": "q5",
+    "level": "a1",
+    "question": "“The shop opens at 9 and closes at 5.” When does the shop close?",
+    "options": [
+      "At nine",
+      "At noon",
+      "At five",
+      "At ten"
+    ],
+    "answer": 2,
+    "explanation": "Cümlede kapanış saati 5 olarak belirtilir."
+  },
+  {
+    "id": "q6",
+    "level": "a2",
+    "question": "Yesterday, we ___ to the park.",
+    "options": [
+      "go",
+      "went",
+      "going",
+      "gone"
+    ],
+    "answer": 1,
+    "explanation": "“Yesterday” geçmiş zamanı gerektirir; “go” fiilinin geçmişi “went”tir."
+  },
+  {
+    "id": "q7",
+    "level": "a2",
+    "question": "This bag is ___ than that one.",
+    "options": [
+      "heaviest",
+      "heavy",
+      "heavily",
+      "heavier"
+    ],
+    "answer": 3,
+    "explanation": "“Than” ile karşılaştırmada “heavier” kullanılır."
+  },
+  {
+    "id": "q8",
+    "level": "a2",
+    "question": "There isn’t ___ milk in the fridge.",
+    "options": [
+      "some",
+      "many",
+      "any",
+      "few"
+    ],
+    "answer": 2,
+    "explanation": "Olumsuz cümlede sayılamayan isimle “any” kullanılabilir."
+  },
+  {
+    "id": "q9",
+    "level": "a2",
+    "question": "“Please return the book before Friday.” What should you do?",
+    "options": [
+      "Bring it back before Friday",
+      "Buy it on Friday",
+      "Keep it until next month",
+      "Read only on Friday"
+    ],
+    "answer": 0,
+    "explanation": "“Return” burada geri vermek anlamındadır."
+  },
+  {
+    "id": "q10",
+    "level": "a2",
+    "question": "Look at those clouds! It ___ rain.",
+    "options": [
+      "would",
+      "is going to",
+      "has",
+      "was"
+    ],
+    "answer": 1,
+    "explanation": "Gözlenen bir belirtiye dayalı tahminde “be going to” kullanılır."
+  },
+  {
+    "id": "q11",
+    "level": "b1",
+    "question": "I have lived here ___ 2020.",
+    "options": [
+      "for",
+      "during",
+      "since",
+      "from"
+    ],
+    "answer": 2,
+    "explanation": "Başlangıç noktası belirtirken “since” kullanılır."
+  },
+  {
+    "id": "q12",
+    "level": "b1",
+    "question": "If I had more time, I ___ learn another language.",
+    "options": [
+      "will",
+      "can",
+      "am",
+      "would"
+    ],
+    "answer": 3,
+    "explanation": "Varsayımsal şimdiki durum için ikinci koşul yapısı: if + past, would + fiil."
+  },
+  {
+    "id": "q13",
+    "level": "b1",
+    "question": "The letter ___ yesterday.",
+    "options": [
+      "was sent",
+      "is sending",
+      "has send",
+      "sent"
+    ],
+    "answer": 0,
+    "explanation": "Geçmiş zaman edilgen yapı “was sent”tir."
+  },
+  {
+    "id": "q14",
+    "level": "b1",
+    "question": "Although the train was delayed, Maya arrived before the meeting started. Which is true?",
+    "options": [
+      "Maya missed the meeting",
+      "Maya arrived in time",
+      "The train was early",
+      "The meeting was cancelled"
+    ],
+    "answer": 1,
+    "explanation": "Gecikmeye rağmen toplantı başlamadan yetişmiştir."
+  },
+  {
+    "id": "q15",
+    "level": "b1",
+    "question": "She suggested ___ a short break.",
+    "options": [
+      "take",
+      "to take",
+      "taking",
+      "took"
+    ],
+    "answer": 2,
+    "explanation": "“Suggest” fiilinden sonra bu yapıda -ing kullanılır."
+  },
+  {
+    "id": "q16",
+    "level": "b2",
+    "question": "By the time we arrived, the film ___.",
+    "options": [
+      "has started",
+      "starts",
+      "was start",
+      "had started"
+    ],
+    "answer": 3,
+    "explanation": "Geçmişteki başka bir olaydan önce tamamlanan eylem past perfect ile anlatılır."
+  },
+  {
+    "id": "q17",
+    "level": "b2",
+    "question": "I wish I ___ more careful yesterday.",
+    "options": [
+      "have been",
+      "had been",
+      "am",
+      "will be"
+    ],
+    "answer": 1,
+    "explanation": "Geçmişteki pişmanlık “wish + past perfect” ile belirtilir."
+  },
+  {
+    "id": "q18",
+    "level": "b2",
+    "question": "The proposal is feasible. In this context, “feasible” means ___.",
+    "options": [
+      "possible to carry out",
+      "too expensive to consider",
+      "already completed",
+      "legally required"
+    ],
+    "answer": 0,
+    "explanation": "“Feasible” uygulanabilir demektir."
+  },
+  {
+    "id": "q19",
+    "level": "b2",
+    "question": "“The policy reduced costs; nevertheless, several staff members opposed it.” What does “nevertheless” signal?",
+    "options": [
+      "A cause",
+      "An example",
+      "A contrast",
+      "A summary"
+    ],
+    "answer": 2,
+    "explanation": "Tasarruf sağlanmasına rağmen itiraz olması bir karşıtlık kurar."
+  },
+  {
+    "id": "q20",
+    "level": "b2",
+    "question": "The researcher ___ findings were published won an award.",
+    "options": [
+      "who",
+      "whom",
+      "which",
+      "whose"
+    ],
+    "answer": 3,
+    "explanation": "Bulguların kime ait olduğunu gösteren ilgi sözcüğü “whose”dur."
+  },
+  {
+    "id": "q21",
+    "level": "c1",
+    "question": "Not until the final paragraph ___ the author’s intention.",
+    "options": [
+      "I understood",
+      "did I understand",
+      "I had understood",
+      "understood I"
+    ],
+    "answer": 1,
+    "explanation": "Cümle başındaki “Not until” ana cümlede yardımcı fiil-özne devrikliği gerektirir."
+  },
+  {
+    "id": "q22",
+    "level": "c1",
+    "question": "Had they consulted the data, they ___ a different conclusion.",
+    "options": [
+      "would have reached",
+      "will reach",
+      "reach",
+      "had reached"
+    ],
+    "answer": 0,
+    "explanation": "Devrik üçüncü koşul yapısında sonuç “would have + past participle” ile ifade edilir."
+  },
+  {
+    "id": "q23",
+    "level": "c1",
+    "question": "The evidence is compelling but not conclusive. What does this mean?",
+    "options": [
+      "It proves the claim beyond doubt",
+      "It is irrelevant",
+      "It is persuasive but does not establish certainty",
+      "It is deliberately false"
+    ],
+    "answer": 2,
+    "explanation": "“Compelling” ikna edici; “not conclusive” kesin sonuca yetmeyen demektir."
+  },
+  {
+    "id": "q24",
+    "level": "c1",
+    "question": "Choose the most natural combination: The report ___ light on the problem.",
+    "options": [
+      "throws away",
+      "makes",
+      "puts",
+      "sheds"
+    ],
+    "answer": 3,
+    "explanation": "Yerleşik ifade “shed light on” bir konuya açıklık getirmektir."
+  },
+  {
+    "id": "q25",
+    "level": "c1",
+    "question": "“The findings may indicate a trend, though the sample is small.” Why does the writer use “may”?",
+    "options": [
+      "To announce a firm rule",
+      "To qualify the certainty of the claim",
+      "To give permission",
+      "To describe a past habit"
+    ],
+    "answer": 1,
+    "explanation": "“May” burada iddianın kesinliğini sınırlayan ihtiyatlı anlatımdır."
+  },
+  {
+    "id": "q26",
+    "level": "c2",
+    "question": "“His apology was perfunctory.” Which interpretation is closest?",
+    "options": [
+      "It was deeply heartfelt",
+      "It was unusually detailed",
+      "It was delivered as a routine formality",
+      "It was never offered"
+    ],
+    "answer": 2,
+    "explanation": "“Perfunctory” özen veya içtenlik göstermeden, görev gereği yapılan demektir."
+  },
+  {
+    "id": "q27",
+    "level": "c2",
+    "question": "“The argument is not without merit.” What does the writer imply?",
+    "options": [
+      "The argument has no value",
+      "The argument has some value, expressed cautiously",
+      "The argument is unquestionably correct",
+      "The argument has not been heard"
+    ],
+    "answer": 1,
+    "explanation": "İkili olumsuzluk, ölçülü biçimde bir miktar değer bulunduğunu kabul eder."
+  },
+  {
+    "id": "q28",
+    "level": "c2",
+    "question": "“For all its elegance, the model fails to explain the anomaly.” Here “for all” means ___.",
+    "options": [
+      "Despite",
+      "Because of",
+      "In addition to",
+      "In exchange for"
+    ],
+    "answer": 0,
+    "explanation": "“For all” bu bağlamda “bütün ... rağmen” anlamında ödünleme belirtir."
+  },
+  {
+    "id": "q29",
+    "level": "c2",
+    "question": "The committee’s endorsement was contingent ___ further review.",
+    "options": [
+      "to",
+      "with",
+      "for",
+      "on"
+    ],
+    "answer": 3,
+    "explanation": "Yerleşik ifade “contingent on” bir koşula bağlı olmaktır."
+  },
+  {
+    "id": "q30",
+    "level": "c2",
+    "question": "“The author stops short of endorsing the proposal.” What is implied?",
+    "options": [
+      "The author fully approves it",
+      "The author refuses to discuss it",
+      "The author does not go as far as approving it",
+      "The author has already implemented it"
+    ],
+    "answer": 2,
+    "explanation": "“Stop short of” belirtilen son adımı atmamak, o noktaya kadar gitmemektir."
+  }
+]

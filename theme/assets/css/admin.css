@@ -1,0 +1,59 @@
+/* =========================================================
+   English Web TR - Admin Panel Stilleri
+   post.php/post-new.php meta box'ları, Ayarlar sayfası ve
+   AI Araçları (toplu üretim/görsel) sayfalarında yüklenir.
+   ========================================================= */
+
+.ewt-error { color: #b91c1c; font-weight: 600; }
+.ewt-success { color: #15803d; font-weight: 600; }
+.ewt-test-result { margin-left: 8px; }
+
+.ewt-ai-box .description,
+.ewt-ai-image-box .description,
+.ewt-seo-box .description {
+	display: block; margin-top: 4px; color: #646970; font-size: 12px; font-style: italic;
+}
+
+.ewt-ai-box label, .ewt-ai-image-box label, .ewt-seo-box label { display: block; margin-bottom: 3px; }
+.ewt-ai-box p, .ewt-ai-image-box p, .ewt-seo-box p { margin-bottom: 12px; }
+
+#ewt_ai_image_preview img { border-radius: 6px; margin-top: 8px; max-width: 100%; }
+
+/* Toplu araç sayfaları */
+#ewt_bulk_csv_preview_table img,
+#ewt_bulk_img_results_table img { vertical-align: middle; }
+.ewt-youcom-hero { background: #eef4ff; border: 1px solid #dbe9ff; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; }
+
+/* CPT-önce-seç akışı: seçilen içerik türü için dashboard'dan oluşturulmuş mevcut Seviye terimleri */
+.ewt-seviye-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+.ewt-seviye-chip {
+	display: inline-block; background: #eef4ff; border: 1px solid #c7ddff; color: #1d4ed8;
+	border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600;
+}
+
+/* Bağlantı Yöneticisi (İç/Dış Bağlantı meta box + Toplu Uygula) */
+.ewt-link-box { border-top: 1px solid #e2e8f0; margin-top: 4px; padding-top: 4px; }
+.ewt-link-results-list { list-style: none; margin: 10px 0; padding: 0; }
+.ewt-link-results-list li {
+	background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;
+	padding: 8px 12px; margin-bottom: 6px;
+}
+.ewt-link-results-list label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+.ewt-link-results-list code { background: #eef4ff; padding: 1px 5px; border-radius: 4px; font-size: 11px; word-break: break-all; }
+.ewt-link-bulk-item { border-bottom: 1px solid #eef1f5; padding: 6px 0; }
+.ewt-link-bulk-item summary { cursor: pointer; }
+.ewt-link-bulk-item summary a { color: #1d4ed8; text-decoration: none; }
+.ewt-link-bulk-item summary a:hover { text-decoration: underline; }
+.ewt-link-bulk-item .ewt-link-results-list { margin: 6px 0 4px 22px; }
+.ewt-link-bulk-item .ewt-link-results-list li { background: #fbfdff; padding: 5px 10px; font-size: 12.5px; }
+
+/* Site Arama > İndeks Yönetimi */
+.ewt-search-stats-box { display: flex; gap: 24px; margin: 16px 0 20px; }
+.ewt-search-stat {
+	background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 22px; text-align: center; min-width: 160px;
+}
+.ewt-search-stat strong { display: block; font-size: 26px; color: #1d4ed8; }
+.ewt-search-stat span { font-size: 12px; color: #64748b; }
+
+.ewt-search-progress-wrap { background: #e2e8f0; border-radius: 999px; height: 10px; overflow: hidden; max-width: 500px; margin-top: 10px; }
+.ewt-search-progress-bar { background: #2563eb; height: 100%; width: 0%; transition: width .25s ease; }

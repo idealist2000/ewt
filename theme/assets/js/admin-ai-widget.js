@@ -25,7 +25,8 @@ jQuery(function ($) {
 			prompt: prompt,
 			difficulty: difficulty,
 			word_count: wordCount,
-			post_id: postId
+			post_id: postId,
+			focus_keyword: $('#ewt_focus_keyword').val() || ''
 		}).done(function (res) {
 			if (res.success) {
 				insertContentIntoEditor(res.data.content);

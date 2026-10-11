@@ -6,7 +6,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EWT_VERSION', '1.14.1' ); // Öğrenme yolu ve kısa seviye testi.
+define( 'EWT_VERSION', '1.15.0' ); // Tıklamayla sohbet ve ortak SEO kuralları.
 define( 'EWT_DIR', get_template_directory() );
 define( 'EWT_URI', get_template_directory_uri() );
 
@@ -63,7 +63,9 @@ add_action( 'wp_enqueue_scripts', 'ewt_enqueue_assets' );
 require_once EWT_DIR . '/inc/cpt-taxonomies.php';
 require_once EWT_DIR . '/inc/mega-menu.php';
 require_once EWT_DIR . '/inc/settings-page.php';
+require_once EWT_DIR . '/inc/seo-policy.php';
 require_once EWT_DIR . '/inc/seo-meta-box.php';
+require_once EWT_DIR . '/inc/seo-maintenance.php';
 require_once EWT_DIR . '/inc/ai-content-widget.php';
 require_once EWT_DIR . '/inc/esp-it-generator.php';
 require_once EWT_DIR . '/inc/featured-image-widget.php';

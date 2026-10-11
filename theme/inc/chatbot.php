@@ -15,8 +15,9 @@ function ewt_render_chatbot() {
 	$greet = get_option( 'ewt_chatbot_greeting', "Merhaba! 👋 English Web TR'ye hoş geldin. Sana nasıl yardımcı olabilirim?" );
 	?>
 	<div id="ewt-chatbot" aria-live="polite">
-		<button id="ewt-chatbot-toggle" aria-label="Sohbeti aç/kapat">
-			<span class="ewt-chat-icon">💬</span>
+		<button type="button" id="ewt-chatbot-toggle" aria-label="Sorunuz var mı? Sohbeti aç/kapat" aria-controls="ewt-chatbot-panel" aria-expanded="false">
+			<span class="ewt-chat-icon" aria-hidden="true">💬</span>
+			<span class="ewt-chat-label">Sorunuz var mı?</span>
 		</button>
 		<div id="ewt-chatbot-panel" class="ewt-hidden">
 			<div class="ewt-chatbot-header">

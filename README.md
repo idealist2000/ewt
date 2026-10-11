@@ -1,6 +1,22 @@
 # English Web TR
 
-Güncel geliştirme sürümü: **1.14.1**. WordPress’e yüklenebilir paket: `englishweb-v1.14.1.zip`. Düzenlenebilir tema kaynakları `theme/` klasöründedir; önceki ZIP sürümleri korunmuştur.
+Güncel geliştirme sürümü: **1.15.0**. WordPress’e yüklenebilir paket: `englishweb-v1.15.0.zip`. Düzenlenebilir tema kaynakları `theme/` klasöründedir; önceki ZIP sürümleri korunmuştur.
+
+## 1.15.0 — Tıklamayla sohbet ve ortak SEO kuralları
+
+Chatbot yatay **Sorunuz var mı?** düğmesiyle açılır; okuma, bekleme ve kaydırma paneli açmaz ve AI isteği göndermez. Ders bağlamını ancak açıldığında seçer. Örnek isteme, soru sorma, sesle yazma ve mevcut ayarlara bağlı telefon/WhatsApp bağlantıları korunur. Escape paneli kapatır.
+
+SEO başlıkları tam birincil focus keyword ile başlar, her kelimenin ilk harfi Türkçe kurallarla büyütülür; sınav kısaltmaları korunur ve 55 Unicode karakteri aşılmaz. İçerikte en az iki H2 varsa gerçek bölüm sayısı kullanılır. Yoksa başlangıç seviyesine uygun “Kolay Anlatım”, hata konulu metinde “Yaygın Hatalar”, diğer durumda “Rehber” eklenir. Alan yetmezse kısa uygun ifade seçilir; tam FK ve 55 karakter sınırı önceliklidir. FK tek başına 55 karakteri aşıyorsa işlem uyarıyla atlanır; FK kesilmez. Başlık tema, Rank Math ve mevcut Yoast alanlarına yazılır; Rank Math ikincil anahtar kelimeleri korunur. Canlı Rank Math eklentisiyle doğrulama ayrıca gerekir; geliştirme testleri metadata ve filtreleri kontrol eder.
+
+**Görünüm → SEO İçerik Kontrolü** ekranında önce analiz edin, ardından görünen partiyi veya tüm içerikleri güncelleyin. Eski Rank Math kayıtlarının kalıcı güncellenmesi bu işlemle veya yazıyı kaydederek olur. Partiler 20 içeriktir; mevcut URL'ler korunur. FK eksik/çok uzunsa içerik atlanır. Ön yüz başlık, bağlantı ve alt metin kuralları tema etkinleşince uygulanır. Yazı, standart WordPress sayfası ve ders içerikleri desteklenir; öneri gibi sanal tema rotaları toplu düzenlemeye dahil değildir.
+
+Anahtar kelime yoğunluğu **%1,9 hedefidir**, kesin sonuç garantisi değildir. Tam FK ifade sayısı / görünen kelime sayısı ölçülür. Düzenleyicide ve kontrol ekranında gerçek oran, kelime ve kullanım sayısı gösterilir. Yeni AI üretimine gerçek FK ve yaklaşık doğal kullanım sayısı gönderilir; mevcut ders metni otomatik yeniden yazılmaz. Gerekirse metni anlamını koruyarak düzenleyin.
+
+Her ders/yazıya Wikipedia, Medium, British Council, BBC, Purdue OWL (.edu) ve American English (.gov) için ek okuma bağlantıları eklenir. Bunlar dersin alıntı kaynakları olarak sunulmaz. İçerikteki dış HTTP(S) bağlantıları yeni sekmede, noopener/noreferrer ile açılır. Açıklayıcı görsel alt metinlerine FK eklenir; mevcut açıklama korunur. Dekoratif görseller ve logo istisnadır; paylaşılan medya kayıtları başka yazının anahtar kelimesiyle topluca ezilmez.
+
+Pexels sorguları gramer, kelime, dinleme, konuşma, okuma, yazma ve sınav gibi dar İngilizce öğretimi bağlamlarını kullanır. Fotoğrafın açıklama metni konuya uymuyorsa görsel atlanır; yalnızca “English” sözcüğü yeterli değildir. Çocuk kartlarının nesne görselleri korunur. Metinsel eşleşme, görselin içeriğini insan gibi doğrulamaz. Gerçek AI/Pexels sağlayıcısına çağrı yapılmadı; Pexels akışı sahte API yanıtı ve gerçek görsel baytlarıyla kontrol edildi.
+
+Yeni kontroller: `tests/seo-policy.integration.php` (32 kontrol) ve `node tests/seo-policy.browser.cjs` (otomatik açılmama, açık kullanıcı isteği, mobil düğme, ön yüz SEO, yönetim ekranı ve yetki kontrolü). Veritabanı fixture testlerini aynı anda çalıştırmayın; öneri sıralamasında birbirlerini etkileyebilirler. Bunları yalnızca hazırlanmış yerel geliştirme sitesinde çalıştırın; geçici test içerikleri oluşturulur ve kaldırılır.
 
 ## 1.14.1 — Öneri sonuçlarından bağlantılı PDF e-kitap
 
@@ -30,7 +46,7 @@ Başlangıç önerisi, A1’den kesintisiz biçimde her blokta en az 4/5 doğru 
 
 ## Kurulum
 
-Önce mevcut WordPress dosya ve veritabanı yedeğinizi alın. Görünüm → Temalar → Yeni Ekle → Tema Yükle üzerinden `englishweb-v1.14.1.zip` paketini yükleyin ve English Web TR temasını etkinleştirin. Bu paket `englishweb/` tema dizini içerir. Mevcut kurulumunuz farklı bir tema klasör adı kullanıyorsa canlı siteye uygulamadan önce bir test sitesinde doğrulayın. Menü konumları ve tema ayarlarını kontrol edin, önbellekleri temizleyin. Yeni öneri sayfası `?ewt_path=1` ile çalışır; ek sayfa oluşturma veya yeni rewrite kuralı gerektirmez.
+Önce mevcut WordPress dosya ve veritabanı yedeğinizi alın. Görünüm → Temalar → Yeni Ekle → Tema Yükle üzerinden `englishweb-v1.15.0.zip` paketini yükleyin ve English Web TR temasını etkinleştirin. Bu paket `englishweb/` tema dizini içerir. Mevcut kurulumunuz farklı bir tema klasör adı kullanıyorsa canlı siteye uygulamadan önce bir test sitesinde doğrulayın. Menü konumları ve tema ayarlarını kontrol edin, önbellekleri temizleyin. Yeni öneri sayfası `?ewt_path=1` ile çalışır; ek sayfa oluşturma veya yeni rewrite kuralı gerektirmez.
 
 ## Geliştirme ve doğrulama
 

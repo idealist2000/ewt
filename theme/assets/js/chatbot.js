@@ -14,9 +14,6 @@
 		var voiceInfo = document.getElementById('ewt-chatbot-voice-status');
 		var activeParagraph = null;
 		var requestPending = false;
-		var pauseTimer = null;
-		var pauseCandidate = null;
-		var prompted = {};
 
 		if (!toggleBtn || !panel || !messages || !quickWrap) return;
 
@@ -62,7 +59,8 @@
 			setQuickReplies([
 				{label: '✨ Daha fazla örnek', action: function () { askAssistant('examples', ''); }},
 				{label: '❓ Sorun var / soru sor', action: showQuestionForm},
-				{label: 'Şimdilik hayır', action: closePanel}
+				{label: 'Şimdilik hayır', action: closePanel},
+				{label: 'Ana Menü', echo: false, action: showMainMenu}
 			]);
 		}
 
@@ -141,53 +139,15 @@
 			input.focus();
 		}
 
-		function offerHelp(paragraph) {
-			activeParagraph = paragraph;
-			openPanel();
-			addMessage('Bu paragrafta biraz duraksadın. İpucu ister misin? Sorun varsa yazabilir veya mikrofonla sorabilirsin.', 'bot');
-			showLessonOptions();
-		}
-
-		function setupPauseDetection() {
-			if (!cfg.isLesson || !('IntersectionObserver' in window)) return;
+		function currentParagraph() {
 			var paragraphs = Array.prototype.slice.call(document.querySelectorAll('.ewt-single-content p')).filter(function (p) {
-				return p.textContent.trim().length >= 60;
+				return p.textContent.trim().length >= 20 && !p.closest('.ewt-learning-resources, #ewt-topic-speaking');
 			});
-			if (!paragraphs.length) return;
-
-			paragraphs.forEach(function (p, index) { p.dataset.ewtHelpId = String(index); });
-			var observer = new IntersectionObserver(function (entries) {
-				entries.forEach(function (entry) {
-					if (entry.intersectionRatio < 0.55) {
-						if (pauseCandidate === entry.target) {
-							clearTimeout(pauseTimer);
-							pauseCandidate = null;
-						}
-						return;
-					}
-					clearTimeout(pauseTimer);
-					var p = entry.target;
-					pauseCandidate = p;
-					var id = p.dataset.ewtHelpId;
-					if (prompted[id] || !panel.classList.contains('ewt-hidden') || document.hidden) return;
-					var words = p.textContent.trim().split(/\s+/).length;
-					var expectedReadingMs = (words / 180) * 60000;
-					var delay = Math.max(9000, Math.min(22000, expectedReadingMs * 1.35));
-					pauseTimer = window.setTimeout(function () {
-						if (!document.hidden && pauseCandidate === p && panel.classList.contains('ewt-hidden')) {
-							prompted[id] = true;
-							offerHelp(p);
-						}
-					}, delay);
-				});
-			}, {threshold: [0.55]});
-			paragraphs.forEach(function (p) { observer.observe(p); });
-			document.addEventListener('visibilitychange', function () {
-				if (document.hidden) {
-					clearTimeout(pauseTimer);
-					pauseCandidate = null;
-				}
+			var visible = paragraphs.filter(function (p) {
+				var rect = p.getBoundingClientRect();
+				return rect.bottom > 0 && rect.top < window.innerHeight;
 			});
+			return visible.length ? visible[0] : (paragraphs[0] || null);
 		}
 
 		function showTutoringCTA() {
@@ -223,8 +183,11 @@
 		toggleBtn.setAttribute('aria-expanded', 'false');
 		toggleBtn.addEventListener('click', function () {
 			if (panel.classList.contains('ewt-hidden')) {
+				activeParagraph = cfg.isLesson ? currentParagraph() : null;
 				openPanel();
-				if (cfg.isLesson && activeParagraph) showLessonOptions();
+				if (cfg.isLesson && activeParagraph) {
+					showLessonOptions();
+				} else showMainMenu();
 			} else closePanel();
 		});
 		if (closeBtn) closeBtn.addEventListener('click', closePanel);
@@ -267,6 +230,8 @@
 		}
 
 		showMainMenu();
-		setupPauseDetection();
+		document.addEventListener('keydown', function (event) {
+			if (event.key === 'Escape' && !panel.classList.contains('ewt-hidden')) { closePanel(); toggleBtn.focus(); }
+		});
 	});
 }());

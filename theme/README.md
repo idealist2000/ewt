@@ -1,5 +1,11 @@
 # English Web TR — Özel WordPress Teması
 
+## Tıklamayla chatbot ve SEO kuralları (v1.15.0)
+
+Yatay “Sorunuz var mı?” düğmesi chatbotu yalnızca tıklanınca açar. Soru/örnek, sesle yazma ve mevcut iletişim seçenekleri korunur. SEO başlıkları tam focus keyword ile başlar, kelimeler büyük harfle başlar ve 55 karakteri aşmaz; gerçek bölüm sayısı, uygun duygu ifadesi veya “Rehber” kullanılır. Çok uzun FK uyarıyla atlanır.
+
+Görünüm → SEO İçerik Kontrolü ile mevcut Rank Math/tema kayıtlarını analiz edip güncelleyin. Mevcut URL'ler korunur. Yoğunluk %1,9 hedefi olarak ölçülür; mevcut metin zorla yeniden yazılmaz. Ders/yazılarda alt metinlere FK ve dışa açılan altı ek okuma kaynağı eklenir. Pexels İngilizce öğretimine özel sorgu ve açıklama eşleşmesi kullanır; uygun fotoğraf yoksa görsel atlanır. Tam kullanım ve doğrulama ayrıntıları dağıtım deposunun README dosyasındadır.
+
 ## Öneri sonuçlarından bağlantılı PDF (v1.14.1)
 
 Öneri sayfasındaki “PDF e-kitabımı oluştur” düğmesi, seçtiğiniz sıralamadaki ilk içeriklerin başlık ve tıklanabilir bağlantılarından bir çalışma listesi hazırlar. Varsayılan sınır mevcut e-kitap ayarına göre 30’dur. Seviye, eğitim grubu ve hedef korunur. Açılan görünümde “PDF olarak kaydet / Yazdır” düğmesine basıp tarayıcınızda PDF olarak kaydedin. Ders metinleri bu yeni bağlantı moduna dahil edilmez. Mevcut tam içerikli PDF/EPUB oluşturucu kullanılmaya devam eder.

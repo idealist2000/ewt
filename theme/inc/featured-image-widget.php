@@ -49,29 +49,49 @@ function ewt_ai_image_box_html( $post ) {
 }
 
 /**
- * Bir sorgudan Pexels'te fotoğraf arar, ilk sonucun binary verisini döndürür.
+ * Pexels'te dar öğretim bağlamıyla arar, eşleşen fotoğrafın binary verisini döndürür.
  * Başarısızsa WP_Error döner.
  */
-function ewt_fetch_pexels_image( $query ) {
- $api_key=get_option('ewt_pexels_api_key');
- if(!$api_key)return new WP_Error('no_key','Pexels API anahtarı ayarlanmamış.');
+function ewt_pexels_search_context( $query, $child_object = false ) {
  $query=strtolower(remove_accents(wp_strip_all_tags($query)));
- $map=array('meyve'=>'fruit','hayvan'=>'animal','renk'=>'color','aile'=>'family','okul'=>'school','sinif'=>'classroom','yemek'=>'food','hava'=>'weather','meslek'=>'occupation','seyahat'=>'travel','spor'=>'sport','muzik'=>'music','kitap'=>'book','vucut'=>'body','kedi'=>'cat','kopek'=>'dog','elma'=>'apple');
- foreach($map as $tr=>$en)$query=str_replace($tr,$en,$query);
- $query=preg_replace('/\b(ingilizce|english|sinif|unit|unite|konu|anlatimi|ornekleri|ile|icin|ve|the|and|in|of|a|an|to|isolated|object|white|background|simple|photo)\b/',' ',$query);
- $terms=array_values(array_unique(array_filter(preg_split('/[^a-z]+/',$query),function($v){return strlen($v)>2;})));
- if(!$terms)return new WP_Error('no_subject','Somut bir İngilizce görsel konusu girin.');
- $response=wp_remote_get(add_query_arg(array('query'=>implode(' ',array_slice($terms,0,6)),'per_page'=>24,'orientation'=>'landscape','locale'=>'en-US'),'https://api.pexels.com/v1/search'),array('timeout'=>30,'headers'=>array('Authorization'=>$api_key)));
- if(is_wp_error($response))return $response;
- if(wp_remote_retrieve_response_code($response)!==200)return new WP_Error('pexels_http','Pexels araması başarısız.');
- $body=json_decode(wp_remote_retrieve_body($response),true);$best=null;$best_score=0;
- foreach(($body['photos']??array()) as $photo){
+ $objects=array('meyveler'=>'fruit','meyve'=>'fruit','hayvanlar'=>'animal','hayvan'=>'animal','renkler'=>'color','renk'=>'color','aile'=>'family','okul'=>'school','sinif'=>'classroom','yemek'=>'food','hava'=>'weather','meslek'=>'occupation','seyahat'=>'travel','spor'=>'sport','muzik'=>'music','kitap'=>'book','vucut'=>'body','kedi'=>'cat','kopek'=>'dog','elma'=>'apple');
+ $translated=strtr($query,$objects);
+ if($child_object){
+  $terms=array_values(array_unique(array_filter(preg_split('/[^a-z]+/',$translated),function($term){return in_array($term,array('fruit','animal','color','family','food','weather','occupation','travel','sport','music','book','body','cat','dog','apple'),true);} )));
+  if(!$terms)return new WP_Error('no_subject','Kelime kartı için somut nesne, hayvan veya renk konusu girin.');
+  return array('query'=>implode(' ',array_slice($terms,0,3)).' isolated object white background','terms'=>$terms,'child'=>true);
+ }
+ $terms=array('english','language','teaching','classroom');
+ if(preg_match('/gramer|dilbilgisi|grammar|tense|past|present|future|passive|modal|condition|preposition/',$query))$terms=array('english','grammar','lesson','classroom','workbook');
+ elseif(preg_match('/kelime|vocabulary|flashcard/',$query))$terms=array('english','vocabulary','flashcards','classroom');
+ elseif(preg_match('/dinleme|listening/',$query))$terms=array('english','listening','lesson','student','headphones');
+ elseif(preg_match('/konusma|speaking|conversation/',$query))$terms=array('english','speaking','tutor','students','conversation');
+ elseif(preg_match('/yazma|writing/',$query))$terms=array('english','writing','lesson','student','workbook');
+ elseif(preg_match('/okuma|reading/',$query))$terms=array('english','reading','lesson','textbook','student');
+ elseif(preg_match('/toefl|ielts|ydt|yds|yokdil|gre|gmat|sinav|exam/',$query))$terms=array('english','exam','preparation','student','workbook');
+ elseif(preg_match('/business|career|kariyer|is gorusmesi/',$query))$terms=array('english','business','language','lesson','students');
+ return array('query'=>implode(' ',$terms),'terms'=>$terms,'child'=>false);
+}
+function ewt_pexels_pick_photo( $photos, $context ) {
+ $best=null;$best_score=0;
+ foreach((array)$photos as $photo){
   $alt=strtolower($photo['alt']??'');if(!$alt||preg_match('/\b(nude|naked|lingerie|weapon|gun|blood|beer|wine|cigarette)\b/',$alt))continue;
-  $score=0;foreach($terms as $term)if(preg_match('/\b'.preg_quote($term,'/').'(?:s|es)?\b/',$alt))$score++;
-  $needed=count($terms)>1?2:1;if($score<$needed)continue;
+  if(!$context['child'] && !preg_match('/\b(english|language|learn\w*|teach\w*|study|studying|students?|classroom|lessons?|workbook|textbook|school|education)\b/',$alt))continue;
+  $score=0;foreach($context['terms'] as $term)if(preg_match('/\b'.preg_quote($term,'/').'(?:s|es|ing)?\b/',$alt))$score++;
+  $needed=$context['child']?1:2;if($score<$needed)continue;
   if($score>$best_score){$best_score=$score;$best=$photo;}
  }
- if(!$best)return new WP_Error('irrelevant','Konuyla yeterince eşleşen fotoğraf bulunamadı; ilgisiz görsel eklenmedi. Daha somut İngilizce arama sözcükleri deneyin.');
+ return $best;
+}
+function ewt_fetch_pexels_image( $query, $child_object = false ) {
+ $api_key=get_option('ewt_pexels_api_key');
+ if(!$api_key)return new WP_Error('no_key','Pexels API anahtarı ayarlanmamış.');
+ $context=ewt_pexels_search_context($query,$child_object);if(is_wp_error($context))return $context;
+ $response=wp_remote_get(add_query_arg(array('query'=>$context['query'],'per_page'=>24,'orientation'=>'landscape','locale'=>'en-US'),'https://api.pexels.com/v1/search'),array('timeout'=>30,'headers'=>array('Authorization'=>$api_key)));
+ if(is_wp_error($response))return $response;
+ if(wp_remote_retrieve_response_code($response)!==200)return new WP_Error('pexels_http','Pexels araması başarısız.');
+ $body=json_decode(wp_remote_retrieve_body($response),true);$best=ewt_pexels_pick_photo($body['photos']??array(),$context);
+ if(!$best)return new WP_Error('irrelevant','İngilizce öğretimi ve seçilen çalışma türüyle yeterince eşleşen fotoğraf bulunamadı; ilgisiz görsel eklenmedi.');
  $url=$best['src']['large2x']??($best['src']['large']??'');if(wp_parse_url($url,PHP_URL_HOST)!=='images.pexels.com')return new WP_Error('invalid_host','Görsel adresi doğrulanamadı.');
  $image=wp_safe_remote_get($url,array('timeout'=>45,'limit_response_size'=>10*1024*1024));if(is_wp_error($image))return $image;
  $data=wp_remote_retrieve_body($image);$info=@getimagesizefromstring($data);
@@ -138,7 +158,7 @@ function ewt_assign_featured_image( $post_id, $provider, $query, $child_object =
 		$search_query = $child_object
 			? $query . ' isolated object white background simple photo'
 			: $query;
-		$result = ewt_fetch_pexels_image( $search_query );
+		$result = ewt_fetch_pexels_image( $search_query, $child_object );
 	}
 
 	if ( is_wp_error( $result ) ) return $result;
@@ -163,7 +183,7 @@ function ewt_assign_featured_image( $post_id, $provider, $query, $child_object =
 		update_post_meta( $attachment_id, '_ewt_photo_credit', sanitize_text_field( $result['credit'] ) );
 	}
 
-	update_post_meta( $attachment_id, '_wp_attachment_image_alt', sanitize_text_field( $result['alt'] ?? get_the_title($post_id) ) );
+	update_post_meta( $attachment_id, '_wp_attachment_image_alt', ewt_seo_image_alt( $result['alt'] ?? get_the_title($post_id), ewt_seo_focus($post_id) ?: get_the_title($post_id) ) );
 	set_post_thumbnail( $post_id, $attachment_id );
 
 	return array(
@@ -181,7 +201,7 @@ function ewt_assign_featured_image( $post_id, $provider, $query, $child_object =
  */
 function ewt_pexels_sideload_inline( $query, $post_id, $child_object = false ) {
 	$search_query = $child_object ? $query . ' isolated object white background simple photo' : $query;
-	$result = ewt_fetch_pexels_image( $search_query );
+	$result = ewt_fetch_pexels_image( $search_query, $child_object );
 	if ( is_wp_error( $result ) ) return $result;
 
 	require_once ABSPATH . 'wp-admin/includes/image.php';
@@ -203,8 +223,12 @@ function ewt_pexels_sideload_inline( $query, $post_id, $child_object = false ) {
 		update_post_meta( $attachment_id, '_ewt_photo_credit', sanitize_text_field( $result['credit'] ) );
 	}
 
+	$alt = ewt_seo_image_alt( $result['alt'] ?? $query, ewt_seo_focus($post_id) ?: get_the_title($post_id) );
+	update_post_meta( $attachment_id, '_wp_attachment_image_alt', $alt );
+
 	return array(
 		'url'    => wp_get_attachment_image_url( $attachment_id, 'large' ),
+		'alt'    => $alt,
 		'credit' => isset( $result['credit'] ) ? $result['credit'] : '',
 	);
 }
@@ -256,7 +280,7 @@ function ewt_insert_inline_pexels_images( $content, $post_id, $fallback_query, $
 		if ( is_wp_error( $img ) ) continue; // bu görsel bulunamadıysa sessizce atla, diğerlerine devam
 
 		$figure  = '<figure class="ewt-inline-image">';
-		$figure .= '<img src="' . esc_url( $img['url'] ) . '" alt="' . esc_attr( $heading_text ) . '" loading="lazy" />';
+		$figure .= '<img src="' . esc_url( $img['url'] ) . '" alt="' . esc_attr( $img['alt'] ) . '" loading="lazy" />';
 		if ( ! empty( $img['credit'] ) ) {
 			$figure .= '<figcaption>Fotoğraf: ' . esc_html( $img['credit'] ) . ' / <a href="https://www.pexels.com" target="_blank" rel="nofollow noopener">Pexels</a></figcaption>';
 		}

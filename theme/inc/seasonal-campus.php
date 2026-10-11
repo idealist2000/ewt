@@ -107,7 +107,7 @@ add_action('ewt_campus_daily',function(){
  if(!$topic){update_option('ewt_campus_log','Kuyruk tamamlandı veya boş.');return;}
  $found=get_posts(array('post_type'=>'post','post_status'=>array('publish','draft','pending','future','private','trash'),'meta_key'=>'_ewt_queue_key','meta_value'=>$key,'numberposts'=>1));
  if($found){$done[$key]=$found[0]->ID;update_option('ewt_campus_done',$done);return;}
- $result=ewt_call_ai_provider($o['provider'],ewt_content_system_prompt('post'),ewt_content_user_prompt($topic,'post','a2',700));if(is_wp_error($result)){update_option('ewt_campus_log',wp_date('c').' — İçerik API isteği başarısız. Anahtar ve kotayı kontrol edin.');return;}
+ $result=ewt_call_ai_provider($o['provider'],ewt_content_system_prompt('post'),ewt_content_user_prompt($topic,'post','a2',700,$topic));if(is_wp_error($result)){update_option('ewt_campus_log',wp_date('c').' — İçerik API isteği başarısız. Anahtar ve kotayı kontrol edin.');return;}
  $content=wp_kses_post($result);if(strlen(wp_strip_all_tags($content))<200){update_option('ewt_campus_log','Yanıt çok kısa; kuyruk korunarak atlandı.');return;}
  $id=wp_insert_post(array('post_type'=>'post','post_status'=>$o['status'],'post_title'=>$topic,'post_content'=>$content,'post_author'=>(int)get_option('ewt_campus_author',0),'meta_input'=>array('_ewt_queue_key'=>$key)),true);if(is_wp_error($id)){update_option('ewt_campus_log','Yazı kaydedilemedi.');return;}
  $done[$key]=$id;update_option('ewt_campus_done',$done);update_option('ewt_campus_last_day',$today);

@@ -72,7 +72,7 @@ function ewt_content_system_prompt( $post_type = '' ) {
  * Çocuklara yönelik CPT'lerde (okul öncesi/ilkokul) somut nesne/hayvan/renk isimlerinin vurgulanmasını ister,
  * böylece bu kelimeler daha sonra görsel (flashcard) eşleştirmede kullanılabilir.
  */
-function ewt_content_user_prompt( $topic, $post_type, $difficulty_value, $word_count ) {
+function ewt_content_user_prompt( $topic, $post_type, $difficulty_value, $word_count, $focus_keyword = '' ) {
 	$opts = ewt_difficulty_options_for_cpt( $post_type );
 	$difficulty_label = isset( $opts[ $difficulty_value ] ) ? $opts[ $difficulty_value ] : $difficulty_value;
 	$word_count = max( 50, min( 5000, intval( $word_count ) ?: 400 ) );
@@ -85,6 +85,7 @@ function ewt_content_user_prompt( $topic, $post_type, $difficulty_value, $word_c
 		$prompt .= ' İçerikte geçen somut nesne/hayvan/renk/meyve gibi görselleştirilebilir kelimeleri <strong> ile vurgula; bu kelimeler daha sonra görsel eşleştirme (flashcard) için kullanılacak.';
 	}
 
+	if ( $focus_keyword ) $prompt .= ewt_seo_prompt_rules( $focus_keyword, $word_count );
 	return $prompt;
 }
 
@@ -100,7 +101,7 @@ function ewt_content_user_prompt( $topic, $post_type, $difficulty_value, $word_c
  *
  * @param array $terms [ [ 'slug' => ..., 'name' => ... ], ... ] — ewt_get_seviye_terms() çıktısı
  */
-function ewt_content_user_prompt_auto_seviye( $topic, $post_type, $terms, $word_count ) {
+function ewt_content_user_prompt_auto_seviye( $topic, $post_type, $terms, $word_count, $focus_keyword = '' ) {
 	$word_count = max( 50, min( 5000, intval( $word_count ) ?: 400 ) );
 
 	$term_list = array();
@@ -118,6 +119,7 @@ function ewt_content_user_prompt_auto_seviye( $topic, $post_type, $terms, $word_
 		$prompt .= ' İçerikte geçen somut nesne/hayvan/renk/meyve gibi görselleştirilebilir kelimeleri <strong> ile vurgula; bu kelimeler daha sonra görsel eşleştirme (flashcard) için kullanılacak.';
 	}
 
+	if ( $focus_keyword ) $prompt .= ewt_seo_prompt_rules( $focus_keyword, $word_count );
 	return $prompt;
 }
 
@@ -207,7 +209,8 @@ function ewt_ajax_generate_content() {
 
 	$post_type     = $post_id ? get_post_type( $post_id ) : 'post';
 	$system_prompt = ewt_content_system_prompt( $post_type );
-	$prompt        = ewt_content_user_prompt( $topic, $post_type, $difficulty, $word_count );
+	$focus_keyword = isset( $_POST['focus_keyword'] ) ? sanitize_text_field( wp_unslash( $_POST['focus_keyword'] ) ) : ewt_seo_focus( $post_id );
+	$prompt        = ewt_content_user_prompt( $topic, $post_type, $difficulty, $word_count, $focus_keyword );
 
 	switch ( $provider ) {
 		case 'claude':

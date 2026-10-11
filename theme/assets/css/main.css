@@ -354,9 +354,11 @@ img { max-width: 100%; height: auto; display: block; }
 /* ---------------- CHATBOT ---------------- */
 #ewt-chatbot { position: fixed; bottom: 20px; right: 20px; z-index: 9000; font-family: inherit; }
 #ewt-chatbot-toggle {
-	width: 58px; height: 58px; border-radius: 50%; background: var(--ewt-primary); color: #fff;
+	display: flex; align-items: center; gap: 10px; width: auto; min-height: 58px; padding: 12px 18px; border-radius: 999px; background: var(--ewt-primary); color: #fff;
 	border: none; font-size: 26px; box-shadow: var(--ewt-shadow-hover); cursor: pointer;
 }
+.ewt-chat-label { font-size: 14px; font-weight: 700; white-space: nowrap; }
+#ewt-chatbot-toggle:focus-visible { outline: 3px solid var(--ewt-primary); outline-offset: 4px; }
 #ewt-chatbot-toggle:hover { background: var(--ewt-primary-dark); }
 #ewt-chatbot-panel {
 	position: absolute; bottom: 72px; right: 0; width: 380px; max-width: 92vw;
@@ -404,3 +406,6 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ---------------- ADMIN WIDGET KUTULARI (editör tarafında da okunaklı) ---------------- */
 /* Not: admin panel stilleri artık assets/css/admin.css içindedir (bu dosya sadece frontend'de yüklenir). */
+.ewt-learning-resources { margin: 2rem 0; padding: 1.25rem; border: 1px solid var(--ewt-border); border-radius: 12px; background: #f4f7fb; }
+.ewt-learning-resources h3 { margin-top: 0; }
+.ewt-learning-resources a { text-decoration: underline; overflow-wrap: anywhere; }

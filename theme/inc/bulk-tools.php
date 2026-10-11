@@ -302,7 +302,7 @@ function ewt_ajax_bulk_generate_content() {
 
 	if ( $auto_seviye ) {
 		// Seviye boş VE bu CPT için gerçek seviye terimleri var: AI'dan hem seviye seçmesini hem içerik üretmesini iste.
-		$prompt  = ewt_content_user_prompt_auto_seviye( $topic, $post_type, $available_terms, $word_count );
+		$prompt  = ewt_content_user_prompt_auto_seviye( $topic, $post_type, $available_terms, $word_count, $fk );
 		$result  = ewt_call_ai_provider( $provider, $system_prompt, $prompt, true ); // $raw = true
 
 		if ( is_wp_error( $result ) ) wp_send_json_error( $result->get_error_message() );
@@ -321,7 +321,7 @@ function ewt_ajax_bulk_generate_content() {
 		// Klasik yol: seviye elle verilmiş, YA DA bu CPT için henüz hiç seviye terimi yok (otomatik tespit imkansız).
 		// İkinci durumda satır boşsa genel/yedek zorluk derecesine düşülür.
 		$difficulty_for_prompt = $seviye_input !== '' ? $seviye_input : $fallback_difficulty;
-		$prompt  = ewt_content_user_prompt( $topic, $post_type, $difficulty_for_prompt, $word_count );
+		$prompt  = ewt_content_user_prompt( $topic, $post_type, $difficulty_for_prompt, $word_count, $fk );
 		$result  = ewt_call_ai_provider( $provider, $system_prompt, $prompt, false );
 
 		if ( is_wp_error( $result ) ) wp_send_json_error( $result->get_error_message() );

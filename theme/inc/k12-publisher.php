@@ -44,7 +44,7 @@ function ewt_k12_publish_unit($t,$provider,$missing){
    if(!get_option($key))return new WP_Error('no_key','Seçilen sağlayıcının API anahtarı English Web Ayarları bölümünde eksik.');
    $difficulty=$t['grade']<=4?'a1':($t['grade']<=8?'a2':'b1');
    $topic=$title.'. Yalnızca bu sınıf ve üniteye uygun, özgün bir İngilizce ders içeriği hazırla. Türkçe açıklamalar, İngilizce örnekler ve Türkçe karşılıkları, kelime tablosu, aşamalı alıştırmalar ve sonunda cevap anahtarı kullan. Ünite kazanımlarını resmî kaynakla doğrulamadıysan resmî müfredat iddiası kurma. HTML h2/h3 kullan; markdown kod çiti ve h1 ekleme. Konu dışına çıkma.';
-   $result=ewt_call_ai_provider($provider,ewt_content_system_prompt($t['pt']),ewt_content_user_prompt($topic,$t['pt'],$difficulty,800),true);
+   $result=ewt_call_ai_provider($provider,ewt_content_system_prompt($t['pt']),ewt_content_user_prompt($topic,$t['pt'],$difficulty,800,$title),true);
    if(is_wp_error($result))return $result;
    $content=wp_kses_post(preg_replace('/^\s*```(?:html)?\s*|\s*```\s*$/i','',trim($result)));
    if(strlen(trim(wp_strip_all_tags($content)))<200)return new WP_Error('empty','Yeterli ders içeriği üretilemedi; ünite yayımlanmadı.');

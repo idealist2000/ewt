@@ -6,7 +6,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'EWT_VERSION', '1.14.0' ); // Öğrenme yolu ve kısa seviye testi.
+define( 'EWT_VERSION', '1.14.1' ); // Öğrenme yolu ve kısa seviye testi.
 define( 'EWT_DIR', get_template_directory() );
 define( 'EWT_URI', get_template_directory_uri() );
 
@@ -80,6 +80,7 @@ require_once EWT_DIR . '/inc/internal-linking.php';
 require_once EWT_DIR . '/inc/url-export.php';
 require_once EWT_DIR . '/inc/draft-publish.php';
 require_once EWT_DIR . '/inc/ebook-builder.php';
+require_once EWT_DIR . '/inc/learning-path-ebook.php';
 
 /* -------------------------------------------------
  * ADMIN PANEL CSS (meta box'lar, ayarlar, AI Araçları sayfaları)

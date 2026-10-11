@@ -1,5 +1,9 @@
 # English Web TR — Özel WordPress Teması
 
+## Öneri sonuçlarından bağlantılı PDF (v1.14.1)
+
+Öneri sayfasındaki “PDF e-kitabımı oluştur” düğmesi, seçtiğiniz sıralamadaki ilk içeriklerin başlık ve tıklanabilir bağlantılarından bir çalışma listesi hazırlar. Varsayılan sınır mevcut e-kitap ayarına göre 30’dur. Seviye, eğitim grubu ve hedef korunur. Açılan görünümde “PDF olarak kaydet / Yazdır” düğmesine basıp tarayıcınızda PDF olarak kaydedin. Ders metinleri bu yeni bağlantı moduna dahil edilmez. Mevcut tam içerikli PDF/EPUB oluşturucu kullanılmaya devam eder.
+
 ## Öğrenme yolu ve seviye testi (v1.14.0)
 
 Tüm tema sayfalarında header altında A1–C2, sınıf/eğitim grubu, sınav/amaç, hedef ve sıralama seçimi bulunur. Ana sayfadaki 30 soruluk kısa dil bilgisi/okuma testi sonucu bu seçimleri kullanarak önerilere aktarılır. Bu bir resmî CEFR belgesi veya sınav skoru tahmini değildir. İçerik düzenleyicisinde “Öğrenme yolu eşleştirmesi” kutusuyla kesin seviye, eğitim grubu, amaç ve hedef atanabilir; boş alanlarda mevcut içerik türleri ve seviye etiketleri kullanılır. Etiketsiz içeriklerin seviyesi tahmin edilmez. Tam kullanım ve geliştirme belgeleri dağıtım deposunun README dosyasındadır.

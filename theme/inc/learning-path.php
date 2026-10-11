@@ -161,7 +161,7 @@ function ewt_path_relevance_sql( $p ) {
 	}
 	return "({$goal}+{$audience}+{$level}+{$target})";
 }
-function ewt_path_query( $p, $page = 1 ) {
+function ewt_path_query( $p, $page = 1, $per_page = 12 ) {
 	global $wpdb;
 	$orderby = function ( $sql, $query ) use ( $p, $wpdb ) {
 		if ( ! $query->get( 'ewt_path_query' ) ) return $sql;
@@ -171,7 +171,7 @@ function ewt_path_query( $p, $page = 1 ) {
 	};
 	add_filter( 'posts_orderby', $orderby, 20, 2 );
 	try {
-		return new WP_Query( array( 'ewt_path_query' => true, 'post_type' => array_merge( array( 'post' ), array_keys( ewt_cpt_config() ) ), 'post_status' => 'publish', 'has_password' => false, 'posts_per_page' => 12, 'paged' => max( 1, (int) $page ), 'ignore_sticky_posts' => true ) );
+		return new WP_Query( array( 'ewt_path_query' => true, 'post_type' => array_merge( array( 'post' ), array_keys( ewt_cpt_config() ) ), 'post_status' => 'publish', 'has_password' => false, 'posts_per_page' => max( 1, min( 100, (int) $per_page ) ), 'paged' => max( 1, (int) $page ), 'ignore_sticky_posts' => true ) );
 	} finally {
 		remove_filter( 'posts_orderby', $orderby, 20 );
 	}

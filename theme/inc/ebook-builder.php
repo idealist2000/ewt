@@ -96,7 +96,7 @@ function ewt_ebook_upload_dir() {
  *
  * @return array|WP_Error
  */
-function ewt_ebook_collect_posts( $ids ) {
+function ewt_ebook_collect_posts( $ids, $links_only = false ) {
 	$ids = array_values( array_unique( array_filter( array_map( 'absint', (array) $ids ) ) ) );
 	if ( empty( $ids ) ) {
 		return new WP_Error( 'ewt_ebook_empty', 'Lütfen en az bir konu seçin.' );
@@ -123,16 +123,19 @@ function ewt_ebook_collect_posts( $ids ) {
 	$chapters = array();
 
 	foreach ( $query->posts as $post ) {
-		$raw = $post->post_content;
+		$raw = '';
+		if ( ! $links_only ) {
+			$raw = $post->post_content;
 
-		// Shortcode'ları çalıştırmıyoruz (quiz/generator gibi interaktif araçlar kitapta anlamsız
-		// ve sunucuya gereksiz yük bindirir); sadece metne dönüştürüp atıyoruz.
-		$raw = strip_shortcodes( $raw );
-		$raw = wpautop( $raw );
-		$raw = ewt_ebook_sanitize_html( $raw );
-		$raw = ewt_ebook_expand_details( $raw );
+			// Shortcode'ları çalıştırmıyoruz (quiz/generator gibi interaktif araçlar kitapta anlamsız
+			// ve sunucuya gereksiz yük bindirir); sadece metne dönüştürüp atıyoruz.
+			$raw = strip_shortcodes( $raw );
+			$raw = wpautop( $raw );
+			$raw = ewt_ebook_sanitize_html( $raw );
+			$raw = ewt_ebook_expand_details( $raw );
 
-		if ( trim( wp_strip_all_tags( $raw ) ) === '' ) continue;
+			if ( trim( wp_strip_all_tags( $raw ) ) === '' ) continue;
+		}
 
 		$pt_obj = get_post_type_object( $post->post_type );
 
@@ -635,7 +638,15 @@ function ewt_ajax_ebook_create() {
 	$ids = isset( $_POST['ids'] ) ? (array) $_POST['ids'] : array();
 	$ids = array_map( 'absint', $ids );
 
-	$chapters = ewt_ebook_collect_posts( $ids );
+	$path_book = null;
+	if ( isset( $_POST['source'] ) && 'learning_path' === $_POST['source'] ) {
+		$path_book = ewt_ebook_collect_path( wp_unslash( $_POST ) );
+		$chapters = is_wp_error( $path_book ) ? $path_book : $path_book['chapters'];
+		$format = 'pdf';
+		$ids = is_wp_error( $path_book ) ? array() : wp_list_pluck( $chapters, 'id' );
+	} else {
+		$chapters = ewt_ebook_collect_posts( $ids );
+	}
 	if ( is_wp_error( $chapters ) ) {
 		wp_send_json_error( array( 'message' => $chapters->get_error_message() ) );
 	}
@@ -648,6 +659,7 @@ function ewt_ajax_ebook_create() {
 	}
 
 	$book_title = isset( $_POST['book_title'] ) ? sanitize_text_field( wp_unslash( $_POST['book_title'] ) ) : '';
+	if ( $path_book && ! is_wp_error( $path_book ) ) $book_title = $path_book['title'];
 	$book_title = mb_substr( trim( $book_title ), 0, 80 );
 	if ( $book_title === '' ) {
 		$book_title = ewt_ebook_default_title( $chapters );
@@ -660,6 +672,11 @@ function ewt_ajax_ebook_create() {
 		'site'      => get_bloginfo( 'name' ),
 		'site_url'  => home_url( '/' ),
 	);
+
+	if ( $path_book ) {
+		$book['mode'] = 'links';
+		$book['preferences'] = $path_book['preferences'];
+	}
 
 	// İsteğe bağlı e-posta kaydı
 	$email = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
@@ -714,6 +731,12 @@ function ewt_ebook_handle_print_request() {
 		);
 	}
 
+	if ( isset( $book['mode'] ) && 'links' === $book['mode'] ) {
+		$chapters = ewt_ebook_collect_posts( wp_list_pluck( $book['chapters'], 'id' ), true );
+		if ( is_wp_error( $chapters ) ) wp_die( 'Bu e-kitaptaki içerikler artık erişilebilir değil.', 'E-kitap bulunamadı', array( 'response' => 410 ) );
+		$book['chapters'] = $chapters;
+	}
+
 	nocache_headers();
 	header( 'Content-Type: text/html; charset=utf-8' );
 	header( 'X-Robots-Tag: noindex, nofollow', true );
@@ -727,6 +750,7 @@ add_action( 'template_redirect', 'ewt_ebook_handle_print_request' );
  * Kapak + içindekiler + bölümler içeren, yazdırmaya hazır tam HTML belge.
  */
 function ewt_ebook_render_print_html( $book ) {
+	if ( isset( $book['mode'] ) && 'links' === $book['mode'] ) return ewt_ebook_render_link_print_html( $book );
 	$title = $book['title'];
 	$date  = date_i18n( 'j F Y', strtotime( $book['created'] ) );
 	$logo  = '';

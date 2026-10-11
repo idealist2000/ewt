@@ -1,6 +1,14 @@
 # English Web TR
 
-Güncel geliştirme sürümü: **1.14.0**. WordPress’e yüklenebilir paket: `englishweb-v1.14.0.zip`. Düzenlenebilir tema kaynakları `theme/` klasöründedir; önceki ZIP sürümleri korunmuştur.
+Güncel geliştirme sürümü: **1.14.1**. WordPress’e yüklenebilir paket: `englishweb-v1.14.1.zip`. Düzenlenebilir tema kaynakları `theme/` klasöründedir; önceki ZIP sürümleri korunmuştur.
+
+## 1.14.1 — Öneri sonuçlarından bağlantılı PDF e-kitap
+
+Öneri sayfasında **PDF e-kitabımı oluştur** düğmesi bulunur. Mevcut e-kitap oluşturucunun nonce, saatlik kullanım sınırı, kapatma ayarı ve 12 saatlik yazdırma bağlantısı kullanılır. Seçilen sıradaki ilk öneriler PDF’ye alınır; varsayılan sınır 30, Görünüm → English Web Ayarları’ndaki mevcut e-kitap konu sınırından değiştirilebilir (en fazla 100). PDF oluşturma mevcut sonuç sayfasının numarasından bağımsızdır; her zaman listenin başından başlar. Seviye, eğitim grubu, sınav/amaç ve hedef PDF’de gösterilir.
+
+PDF yalnızca içerik başlıklarını ve tıklanabilir site bağlantılarını içerir; ders gövdeleri aktarılmaz. Açılan görünümde **PDF olarak kaydet / Yazdır** düğmesine basıp tarayıcıdaki **PDF olarak kaydet** seçeneğini kullanın. Otomatik dosya indirme değildir; mevcut PDF yöntemiyle aynı yazdırma akışını kullanır. Pencere engellenirse sonuç alanındaki **PDF görünümünü aç** bağlantısı kullanılabilir. JavaScript gerekir; üyelik veya e-posta gerekmez. E-kitap özelliği tema ayarlarından kapalıysa bu düğme de görünmez. Yazdırma bağlantısı açıldığında içeriklerin hâlâ yayınlanmış ve şifresiz olduğu tekrar kontrol edilir.
+
+`tests/learning-path-ebook.integration.php` bağlantı modu, sıralama/sınır, eski tam içerik modu ve erişim kontrolünü; `tests/learning-path-ebook.browser.cjs` gerçek PDF çıktısı ve tıklanabilir PDF bağlantıları dahil tarayıcı akışını kontrol eder. Testler yalnızca yerel geliştirme WordPress’i içindir. Gerçek PDF ayrıca bir PDF ayrıştırıcısıyla doğrulandı.
 
 ## 1.14.0 — Öğrenme yolu ve kısa seviye testi
 
@@ -22,7 +30,7 @@ Başlangıç önerisi, A1’den kesintisiz biçimde her blokta en az 4/5 doğru 
 
 ## Kurulum
 
-Önce mevcut WordPress dosya ve veritabanı yedeğinizi alın. Görünüm → Temalar → Yeni Ekle → Tema Yükle üzerinden `englishweb-v1.14.0.zip` paketini yükleyin ve English Web TR temasını etkinleştirin. Bu paket `englishweb/` tema dizini içerir. Mevcut kurulumunuz farklı bir tema klasör adı kullanıyorsa canlı siteye uygulamadan önce bir test sitesinde doğrulayın. Menü konumları ve tema ayarlarını kontrol edin, önbellekleri temizleyin. Yeni öneri sayfası `?ewt_path=1` ile çalışır; ek sayfa oluşturma veya yeni rewrite kuralı gerektirmez.
+Önce mevcut WordPress dosya ve veritabanı yedeğinizi alın. Görünüm → Temalar → Yeni Ekle → Tema Yükle üzerinden `englishweb-v1.14.1.zip` paketini yükleyin ve English Web TR temasını etkinleştirin. Bu paket `englishweb/` tema dizini içerir. Mevcut kurulumunuz farklı bir tema klasör adı kullanıyorsa canlı siteye uygulamadan önce bir test sitesinde doğrulayın. Menü konumları ve tema ayarlarını kontrol edin, önbellekleri temizleyin. Yeni öneri sayfası `?ewt_path=1` ile çalışır; ek sayfa oluşturma veya yeni rewrite kuralı gerektirmez.
 
 ## Geliştirme ve doğrulama
 

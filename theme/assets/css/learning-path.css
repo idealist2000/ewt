@@ -31,3 +31,9 @@
 .ewt-placement [hidden], .ewt-path-bar [hidden] { display: none !important; }
 @media (max-width: 900px) { .ewt-path-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .ewt-path-cards { grid-template-columns: 1fr; } .ewt-path-fields label { flex-basis: calc(50% - .75rem); } .ewt-path-fields button { flex: 1 1 100%; } .ewt-placement { padding: 1rem; } }
+.ewt-path-ebook { padding: 1.25rem; margin: 1.25rem 0; border: 1px solid #dce3ed; border-radius: 12px; background: #f4f7fb; }
+.ewt-path-ebook h2 { margin-top: 0; font-size: 1.25rem; }
+.ewt-path-ebook button { padding: .75rem 1rem; min-height: 44px; background: #173e61; color: #fff; border: 0; border-radius: 8px; font: inherit; cursor: pointer; }
+.ewt-path-ebook button:disabled { opacity: .6; cursor: wait; }
+.ewt-path-ebook [hidden] { display: none !important; }
+.ewt-path-ebook-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

@@ -10,6 +10,7 @@ $results = ewt_path_query( $p, $page );
 	<p><?php echo esc_html( strtoupper( $p['level'] ) . ' · ' . ewt_path_audiences()[ $p['audience'] ] . ' · ' . ewt_path_goals()[ $p['goal'] ] . ( $p['target'] ? ' · ' . ewt_path_targets( $p['goal'] )[ $p['target'] ] : '' ) ); ?></p>
 	<p><?php echo esc_html( 'easy' === $p['order'] ? 'Bilinen seviyeler A1’den C2’ye sıralanır; aynı seviyede hedefine en ilgili içerik önce gelir. Seviyesi belirtilmemiş içerikler sondadır.' : 'Sınav/amaç, hedef, eğitim grubu ve seçtiğin seviyeye yakınlık birlikte değerlendirilir. Daha az ilgili içerikler listenin devamında yer alır.' ); ?> Eşleştirme yayınlanmış içeriklerin etiketlerine dayanır; puan veya sınav başarısı garantisi vermez.</p>
 	<p><?php echo esc_html( number_format_i18n( $results->found_posts ) ); ?> içerik</p>
+	<?php if ( $results->found_posts && ewt_ebook_enabled() ) ewt_ebook_path_controls( $p, $results->found_posts ); ?>
 	<?php if ( $results->have_posts() ) : ?>
 		<div class="ewt-path-cards">
 		<?php while ( $results->have_posts() ) : $results->the_post(); ?>
